@@ -17,5 +17,13 @@ This project aims to:
 -Apply these approaches to the case-study of oysters (Crassostrea virginica) in coastal Maine
 
 
+Collaborators:
+Janardan Mainali
+Holly Cronin
+
+Kacey Stewart
+Melissa Kimble
+Andrew Sellers
+Anna Woodhead
 
 
