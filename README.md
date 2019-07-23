@@ -18,12 +18,12 @@ This project aims to:
 
 
 Collaborators:
-Janardan Mainali
-Holly Cronin
+-Janardan Mainali
+-Holly Cronin
 
 Kacey Stewart
-Melissa Kimble
-Andrew Sellers
-Anna Woodhead
+-Melissa Kimble
+-Andrew Sellers
+-Anna Woodhead
 
 
