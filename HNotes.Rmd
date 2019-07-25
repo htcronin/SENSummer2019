@@ -1,0 +1,107 @@
+---
+title: "SESYNC Cyber Training Summer Institute"
+author: "Janardan & Holly"
+date: "7/26/2019"
+output: html_document
+---
+
+## Social-Ecological Narratives Graduate Pursuit  
+
+#### Leveraging Social-Ecological Narratives for Sustainability Insights: How Do Environmental Conditions and Perceptions Interact Along Maine’s Storied Coast?  
+
+
+**Collaborators**
+
+* Janardan Mainali
+* Holly Cronin
+* Melissa Kimble
+* Andrew Sellers
+* Kacey Stewart
+* Anna Woodhead  
+
+
+This Graduate Pursuit aims to explore the role of narratives within social-ecological system dynamics. We define these **social-ecological narratives** as *the stories through which communities understand their interactions and co-dependencies with an ecological system*. Our methods rely on data integration and analysis across natural sciences, social sciences, and humanities--in particular the processing of under-utilized data from literary, media, and other textual sources.
+
+
+Our project proposes to apply this approach to the case-study of oysters (*Crassostrea virginica*) in coastal Maine. Here we present our initial approach to prepare a variety of text-based data sources for analysis.
+
+
+### Overview of Preparations for Text Analysis  
+
+
+* Convert various documents to standardized .txt files using template header (thanks Melissa!)
+
+```
+        START HEADER
+        SOURCE: 
+        TITLE: 
+        AUTHOR: 
+        DATE:
+        LOCATION:
+        TYPE:  
+        END HEADER
+
+        This is the body, or primary text of the article.
+```
+  
+* Collect .txt files into a corpus of documents  
+
+* In RStudio, create a [corpus object](https://www.tidytextmining.com/dtm.html#tidying-corpus-objects-with-metadata) by extracting header and body text from each document in corpus to create a single table with header items and body as columns
+
+```
+
+[Insert code from Janardan here :)]
+
+```
+
+* document term matrix https://cran.r-project.org/web/packages/tidytext/vignettes/tidying_casting.html
+
+* figure 6.1
+
+* topic modeling
+
+* sentiment analysis
+
+* word frequency over time
+
+* geolocation (mapping of stories...)
+
+
+# Notes and Ideas for Text Analysis
+
+### Potentially Useful R Packages
+
+* [tidytext](https://cran.r-project.org/web/packages/tidytext/index.html)
+
+  + Text mining for word processing and sentiment analysis using 'dplyr', 'ggplot2', and other tidy tools.
+
+
+
+
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
