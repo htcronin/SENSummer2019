@@ -61,7 +61,7 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 library(stringr)
 library(tm)
 
-ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
+ourCorpus <- VCorpus(DirSource("Resources_TXT/NewsLiterarySources"))
 
 
 ```
@@ -70,16 +70,16 @@ ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
 
 ```{r}
 
-#setwd('/nfs/senarratives-data/NewsLiterarySources')
-# file.names<-list.files(path = '/nfs/senarratives-data/NewsLiterarySources', pattern = ".txt")
-# 
-# 
+# setwd('Resources_TXT/NewsLiterarySources')
+# file.names<-list.files(path = 'Resources_TXT/NewsLiterarySources', pattern = ".txt")
+# #
+# #
 # #Creating coloumn names
 # mySource1= character(0)
 # myTitle1= character(0)
 # myAuthor1= character(0)
 # myDate1= character(0)
-# 
+# #
 # library(stringr)
 # for(i in file.names){
 #   print(i)
@@ -103,9 +103,9 @@ ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
 # }
 # 
 # myMeta<- cbind(mySource1, myTitle1, myAuthor1, myDate1)
-# #myMeta
-
-#write.csv( myMeta, file= "C:/SESYNC_Workshop/Resources_TXT/sen_table.csv")
+# myMeta
+# 
+# #write.csv( myMeta, file= "C:/SESYNC_Workshop/Resources_TXT/sen_table.csv")
 
 
 ```
