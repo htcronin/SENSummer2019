@@ -50,8 +50,15 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 * Collect .txt files into a corpus of documents and create a [corpus object](https://www.tidytextmining.com/dtm.html#tidying-corpus-objects-with-metadata) in RStudio   
 
 ```{r}
+setwd("/nfs/senarratives-data")
+## RegEx
+#We read corpus from the literary source and code our way to document matrix(?)
 
-[Insert VCorpus code here :)]
+library(stringr)
+library(tm)
+
+ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
+
 
 ```
 
@@ -59,7 +66,43 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 
 ```{r}
 
-[Insert table-making code here :)]
+setwd('/nfs/senarratives-data/NewsLiterarySources')
+file.names<-list.files(path = '/nfs/senarratives-data/NewsLiterarySources', pattern = ".txt")
+
+
+#Creating coloumn names
+mySource1= character(0)
+myTitle1= character(0)
+myAuthor1= character(0)
+myDate1= character(0)
+
+library(stringr)
+for(i in file.names){
+  print(i)
+  #Here I am trying to read the text files by line so that I can extract the info
+  myFile <- read.delim(i,
+                       "\n",
+                       quote = "",
+                       row.names = NULL,
+                       stringsAsFactors = FALSE,
+                       header= FALSE)
+  mySource<- str_remove(myFile$V1[2], "SOURCE:") #str_remove uses stringr package. I needed it to remove unwanted text from the cell of our interest.
+  myTitle<- str_remove(myFile$V1[3],"TITLE: ")
+  myAuthor<-str_remove(myFile$V1[4], "AUTHOR: ")
+  myDate<-str_remove(myFile$V1[5], "DATE:")
+
+  #Let me append these to separate coloumns
+  mySource1= append(mySource1, mySource)
+  myTitle1= append(myTitle1, myTitle)
+  myAuthor1= append(  myAuthor1, myAuthor)
+  myDate1= append( myDate1, myDate)
+}
+
+myMeta<- cbind(mySource1, myTitle1, myAuthor1, myDate1)
+#myMeta
+
+#write.csv( myMeta, file= "C:/SESYNC_Workshop/Resources_TXT/sen_table.csv")
+
 
 ```
 
@@ -67,7 +110,28 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 
 ```{r}
 
-[Insert data cleaning code here :)]
+## Cleaning texts from our corpus
+
+library(magrittr)
+
+sen_words <- ourCorpus %>%
+  tm_map(removePunctuation) %>%
+  tm_map(removeNumbers) %>% #Removes stop words like and, the, a etc.
+  tm_map(stripWhitespace)
+
+remove_link<- function(body) {
+  match <- str_detect(body, '(http|www|mailto)')
+  body[!match]
+}
+
+sen_words <- sen_words %>%
+  tm_map(content_transformer(remove_link))
+
+## Stopwords and Stems
+
+sen_words <- sen_words %>%
+  tm_map(stemDocument) %>%
+  tm_map(removeWords, stopwords("english"))
 
 ```
 
@@ -75,7 +139,43 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 
 ```{r}
 
-[Insert dtm code here :)]
+## Bag-of-Words
+
+dtm <- DocumentTermMatrix(sen_words)
+
+## Long Form
+
+library(tidytext)
+library(dplyr)
+dtt <- tidy(dtm) #recognizes pattern and 
+words <- dtt %>%
+  group_by(term) %>%
+  summarise(
+    n = n(),
+    total = sum(count)) %>%
+  mutate(nchar = nchar(term))
+
+dtt_trimmed <- words %>%
+  filter(
+    nchar < 16,
+    n > 1,
+    total > 3) %>%
+  select(term) %>%
+  inner_join(dtt)
+
+dtm_trimmed <- dtt_trimmed %>%
+  cast_dtm(document, term, count) #tidytext package
+
+## Term Correlations
+
+word_assoc <- findAssocs(dtm_trimmed, 'oyster' , 0.6) #from tm package. We are checking correlations with oyster*
+word_assoc <- data.frame(
+  word = names(word_assoc[[1]]),
+  assoc = word_assoc,
+  row.names = NULL)
+
+
+
 
 ```
 
@@ -83,15 +183,61 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 
 ```{r}
 
-[Insert LDA code here :)]
+## Latent Dirichlet allocation
+
+library(topicmodels)
+
+seed = 12345 #for random generator. Just to make sure same process happens every time it is run
+fit = LDA(dtm_trimmed, k = 5, control = list(seed=seed))
+email_topics <- as.data.frame(
+  posterior(fit, dtm_trimmed)$topics)
+
+
+
 
 ```
 
 * Create a set of word clouds to present results of topic modeling
 ```{r}
 
-[Insert wordcloud code here :)]
+library(ggwordcloud)
 
+topics <- tidy(fit) %>%
+  filter(beta > 0.006) #How tightly associated with the topic
+
+ggplot(topics,
+       aes(size = beta, label = term)) +
+  geom_text_wordcloud_area(rm_outside = TRUE) +
+  facet_wrap(vars(topic))
+
+
+```
+* Some sentiment analysis
+
+```{r}
+## Let us run some sentiment analysis
+library(dplyr)
+library(tidytext)
+
+sen_td<- tidy(dtm_trimmed)
+
+sen_sentiments <- sen_td %>%
+  inner_join(get_sentiments("bing"), by = c(term = "word"))
+
+sen_sentiments
+
+library(ggplot2)
+
+sen_sentiments %>%
+  count(sentiment, term, wt = count) %>%
+  ungroup() %>%
+  filter(n >= 18) %>%
+  mutate(n = ifelse(sentiment == "negative", -n, n)) %>%
+  mutate(term = reorder(term, n)) %>%
+  ggplot(aes(term, n, fill = sentiment)) +
+  geom_bar(stat = "identity") +
+  ylab("Contribution to sentiment") +
+  coord_flip()
 ```
 
 * Let's take a look and try to interpret our preliminary results...
