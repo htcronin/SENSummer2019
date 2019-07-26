@@ -1,0 +1,9 @@
+START HEADER
+SOURCE: 
+TITLE: 
+AUTHOR: 
+DATE:
+TYPE:  
+END HEADER
+
+This is the body, or primary text of the article.
