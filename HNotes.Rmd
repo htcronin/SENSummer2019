@@ -32,7 +32,7 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 * Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html  
 
 
-<img title="Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html" src="https://www.tidytextmining.com/images/tidyflow-ch-6.png" width="40%"/>
+<img title="Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html" src="https://www.tidytextmining.com/images/tidyflow-ch-6.png" width="70%"/>
 
 
 
@@ -218,8 +218,8 @@ ggplot(topics,
 
 ```
 
-* Let's take a look and try to interpret our preliminary results...
-![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/loAcozC.png)
+
+Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data)
 
 
 * Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
@@ -249,7 +249,7 @@ sen_sentiments %>%
 
 
 
-![Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/u8CHxDy.png) 
+Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) 
 
 
 
@@ -257,3 +257,5 @@ sen_sentiments %>%
 
 
 Thank you all for this opportunity to learn and embark on our data analysis!
+
+#...
