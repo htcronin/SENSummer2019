@@ -66,7 +66,7 @@ ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
 
 ```{r}
 
-setwd('/nfs/senarratives-data/NewsLiterarySources')
+#setwd('/nfs/senarratives-data/NewsLiterarySources')
 file.names<-list.files(path = '/nfs/senarratives-data/NewsLiterarySources', pattern = ".txt")
 
 
@@ -246,17 +246,8 @@ sen_sentiments %>%
 
 * Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
 
-```
-{r}
-
-[Insert sentiment analysis code here :)]
-
-```
 
 ![Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here) 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
 * Next steps: to explore word frequency over time and think about options for geolocating the documents within our corpus to link with other data types and map narrative...
