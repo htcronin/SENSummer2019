@@ -30,7 +30,7 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 ### Overview of Preparations for Text Analysis  
 
 
-![Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html](https://www.tidytextmining.com/images/tidyflow-ch-6.png)
+<img title="Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html" src="https://www.tidytextmining.com/images/tidyflow-ch-6.png" width="40%"/>
 
 * Convert various documents to standardized .txt files using template header (thanks Melissa!)
 
@@ -179,7 +179,7 @@ word_assoc <- data.frame(
 
 ```
 
-* Use a Latent Dirichlet allocation (LDA) to fit a topic model
+* Search for themes that emerge from our corpus using [topic modeling](https://cran.r-project.org/web/packages/tidytext/vignettes/topic_modeling.html) and Latent Dirichlet allocation (LDA) to fit a topic model
 
 ```{r}
 
@@ -197,7 +197,8 @@ email_topics <- as.data.frame(
 
 ```
 
-* Create a set of word clouds to present results of topic modeling
+* Visualize emerging themes by creating a set of word clouds to present results of topic modeling
+
 ```{r}
 
 library(ggwordcloud)
@@ -220,11 +221,8 @@ library(dplyr)
 library(tidytext)
 
 sen_td<- tidy(dtm_trimmed)
-
 sen_sentiments <- sen_td %>%
   inner_join(get_sentiments("bing"), by = c(term = "word"))
-
-sen_sentiments
 
 library(ggplot2)
 
@@ -240,7 +238,10 @@ sen_sentiments %>%
   coord_flip()
 ```
 
+<<<<<<< HEAD
+
 * Let's take a look and try to interpret our preliminary results...
+![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/loAcozC.png)
 
 ![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here) 
 
@@ -248,6 +249,9 @@ sen_sentiments %>%
 
 
 ![Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here) 
+=======
+![Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/u8CHxDy.png) 
+>>>>>>> cba51bb749e3b7aec37a2178a52bc7bc9ea3e6b0
 
 
 * Next steps: to explore word frequency over time and think about options for geolocating the documents within our corpus to link with other data types and map narrative...
