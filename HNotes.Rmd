@@ -10,7 +10,7 @@ output: html_document
 #### Leveraging Social-Ecological Narratives for Sustainability Insights: How Do Environmental Conditions and Perceptions Interact Along Maine’s Storied Coast?  
 
 
-**Collaborators**
+**Collaborators**  
 
 * Janardan Mainali
 * Holly Cronin
@@ -21,16 +21,20 @@ output: html_document
 
 **Introduction**
 
-This Graduate Pursuit aims to explore the role of narratives within social-ecological system dynamics. We define these **social-ecological narratives** as *the stories through which communities understand their interactions and co-dependencies with an ecological system*. Our methods rely on data integration and analysis across natural sciences, social sciences, and humanities--in particular [natural language processing](https://cran.r-project.org/web/views/NaturalLanguageProcessing.html) of under-utilized data from literary, media, and other textual sources.
+This Graduate Pursuit aims to explore the role of narratives within social-ecological system dynamics. We define these **social-ecological narratives** as *the stories through which communities understand their interactions and co-dependencies with an ecological system*. Our methods rely on data integration and analysis across natural sciences, social sciences, and humanities--in particular [natural language processing](https://cran.r-project.org/web/views/NaturalLanguageProcessing.html) of under-utilized data from literary, media, and other textual sources.  
 
 
-Our project proposes to apply this approach to the case-study of oysters (*Crassostrea virginica*) in coastal Maine. Here we present our initial approach to prepare a variety of text-based data sources for analysis.
+Our project proposes to apply this approach to the case-study of oysters (*Crassostrea virginica*) in coastal Maine. Here we present our initial approach to prepare a variety of text-based data sources for analysis.  
 
 
 ### Overview of Preparations for Text Analysis  
 
+* Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html  
+
 
 <img title="Figure 6.1: A flowchart of a text analysis that incorporates topic modeling. The topicmodels package takes a Document-Term Matrix as input and produces a model that can be tided by tidytext, such that it can be manipulated and visualized with dplyr and ggplot2. Source: https://www.tidytextmining.com/topicmodeling.html" src="https://www.tidytextmining.com/images/tidyflow-ch-6.png" width="40%"/>
+
+
 
 * Convert various documents to standardized .txt files using template header (thanks Melissa!)
 
@@ -49,7 +53,7 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
   
 * Collect .txt files into a corpus of documents and create a [corpus object](https://www.tidytextmining.com/dtm.html#tidying-corpus-objects-with-metadata) in RStudio   
 
-```{r}
+```{}
 #setwd("/nfs/senarratives-data")
 ## RegEx
 #We read corpus from the literary source and code our way to document matrix(?)
@@ -108,7 +112,7 @@ ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
 
 * Clean data...
 
-```{r}
+```{}
 
 ## Cleaning texts from our corpus
 
@@ -137,7 +141,7 @@ sen_words <- sen_words %>%
 
 * Create a [document term matrix](https://cran.r-project.org/web/packages/tidytext/vignettes/tidying_casting.html)  
 
-```{r}
+```{}
 
 ## Bag-of-Words
 
@@ -181,7 +185,7 @@ word_assoc <- data.frame(
 
 * Search for themes that emerge from our corpus using [topic modeling](https://cran.r-project.org/web/packages/tidytext/vignettes/topic_modeling.html) and Latent Dirichlet allocation (LDA) to fit a topic model
 
-```{r}
+```{}
 
 ## Latent Dirichlet allocation
 
@@ -199,7 +203,7 @@ email_topics <- as.data.frame(
 
 * Visualize emerging themes by creating a set of word clouds to present results of topic modeling
 
-```{r}
+```{}
 
 library(ggwordcloud)
 
@@ -213,9 +217,14 @@ ggplot(topics,
 
 
 ```
-* Some sentiment analysis
 
-```{r}
+* Let's take a look and try to interpret our preliminary results...
+![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/loAcozC.png)
+
+
+* Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
+
+```{}
 ## Let us run some sentiment analysis
 library(dplyr)
 library(tidytext)
@@ -238,20 +247,13 @@ sen_sentiments %>%
   coord_flip()
 ```
 
-<<<<<<< HEAD
-
-* Let's take a look and try to interpret our preliminary results...
-![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/loAcozC.png)
-
-![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here) 
-
-* Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
 
 
-![Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here) 
-=======
 ![Results of preliminary sentiment analysis for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](https://i.imgur.com/u8CHxDy.png) 
->>>>>>> cba51bb749e3b7aec37a2178a52bc7bc9ea3e6b0
+
 
 
 * Next steps: to explore word frequency over time and think about options for geolocating the documents within our corpus to link with other data types and map narrative...
+
+
+Thank you all for this opportunity to learn and embark on our data analysis!
