@@ -242,7 +242,7 @@ sen_sentiments %>%
 
 * Let's take a look and try to interpret our preliminary results...
 
-![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here)!  
+![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here) 
 
 * Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
 
