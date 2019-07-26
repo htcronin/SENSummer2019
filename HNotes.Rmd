@@ -53,7 +53,7 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
   
 * Collect .txt files into a corpus of documents and create a [corpus object](https://www.tidytextmining.com/dtm.html#tidying-corpus-objects-with-metadata) in RStudio   
 
-```{}
+```{r}
 #setwd("/nfs/senarratives-data")
 ## RegEx
 #We read corpus from the literary source and code our way to document matrix(?)
@@ -112,7 +112,7 @@ ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
 
 * Clean data...
 
-```{}
+```{r}
 
 ## Cleaning texts from our corpus
 
@@ -141,7 +141,7 @@ sen_words <- sen_words %>%
 
 * Create a [document term matrix](https://cran.r-project.org/web/packages/tidytext/vignettes/tidying_casting.html)  
 
-```{}
+```{r}
 
 ## Bag-of-Words
 
@@ -185,7 +185,7 @@ word_assoc <- data.frame(
 
 * Search for themes that emerge from our corpus using [topic modeling](https://cran.r-project.org/web/packages/tidytext/vignettes/topic_modeling.html) and Latent Dirichlet allocation (LDA) to fit a topic model
 
-```{}
+```{r}
 
 ## Latent Dirichlet allocation
 
@@ -203,7 +203,7 @@ email_topics <- as.data.frame(
 
 * Visualize emerging themes by creating a set of word clouds to present results of topic modeling
 
-```{}
+```{r}
 
 library(ggwordcloud)
 
@@ -224,7 +224,7 @@ ggplot(topics,
 
 * Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
 
-```{}
+```{r}
 ## Let us run some sentiment analysis
 library(dplyr)
 library(tidytext)
