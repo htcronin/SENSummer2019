@@ -50,7 +50,7 @@ Our project proposes to apply this approach to the case-study of oysters (*Crass
 * Collect .txt files into a corpus of documents and create a [corpus object](https://www.tidytextmining.com/dtm.html#tidying-corpus-objects-with-metadata) in RStudio   
 
 ```{r}
-setwd("/nfs/senarratives-data")
+#setwd("/nfs/senarratives-data")
 ## RegEx
 #We read corpus from the literary source and code our way to document matrix(?)
 
@@ -67,39 +67,39 @@ ourCorpus <- VCorpus(DirSource("/nfs/senarratives-data/NewsLiterarySources"))
 ```{r}
 
 #setwd('/nfs/senarratives-data/NewsLiterarySources')
-file.names<-list.files(path = '/nfs/senarratives-data/NewsLiterarySources', pattern = ".txt")
-
-
-#Creating coloumn names
-mySource1= character(0)
-myTitle1= character(0)
-myAuthor1= character(0)
-myDate1= character(0)
-
-library(stringr)
-for(i in file.names){
-  print(i)
-  #Here I am trying to read the text files by line so that I can extract the info
-  myFile <- read.delim(i,
-                       "\n",
-                       quote = "",
-                       row.names = NULL,
-                       stringsAsFactors = FALSE,
-                       header= FALSE)
-  mySource<- str_remove(myFile$V1[2], "SOURCE:") #str_remove uses stringr package. I needed it to remove unwanted text from the cell of our interest.
-  myTitle<- str_remove(myFile$V1[3],"TITLE: ")
-  myAuthor<-str_remove(myFile$V1[4], "AUTHOR: ")
-  myDate<-str_remove(myFile$V1[5], "DATE:")
-
-  #Let me append these to separate coloumns
-  mySource1= append(mySource1, mySource)
-  myTitle1= append(myTitle1, myTitle)
-  myAuthor1= append(  myAuthor1, myAuthor)
-  myDate1= append( myDate1, myDate)
-}
-
-myMeta<- cbind(mySource1, myTitle1, myAuthor1, myDate1)
-#myMeta
+# file.names<-list.files(path = '/nfs/senarratives-data/NewsLiterarySources', pattern = ".txt")
+# 
+# 
+# #Creating coloumn names
+# mySource1= character(0)
+# myTitle1= character(0)
+# myAuthor1= character(0)
+# myDate1= character(0)
+# 
+# library(stringr)
+# for(i in file.names){
+#   print(i)
+#   #Here I am trying to read the text files by line so that I can extract the info
+#   myFile <- read.delim(i,
+#                        "\n",
+#                        quote = "",
+#                        row.names = NULL,
+#                        stringsAsFactors = FALSE,
+#                        header= FALSE)
+#   mySource<- str_remove(myFile$V1[2], "SOURCE:") #str_remove uses stringr package. I needed it to remove unwanted text from the cell of our interest.
+#   myTitle<- str_remove(myFile$V1[3],"TITLE: ")
+#   myAuthor<-str_remove(myFile$V1[4], "AUTHOR: ")
+#   myDate<-str_remove(myFile$V1[5], "DATE:")
+# 
+#   #Let me append these to separate coloumns
+#   mySource1= append(mySource1, mySource)
+#   myTitle1= append(myTitle1, myTitle)
+#   myAuthor1= append(  myAuthor1, myAuthor)
+#   myDate1= append( myDate1, myDate)
+# }
+# 
+# myMeta<- cbind(mySource1, myTitle1, myAuthor1, myDate1)
+# #myMeta
 
 #write.csv( myMeta, file= "C:/SESYNC_Workshop/Resources_TXT/sen_table.csv")
 
@@ -242,7 +242,7 @@ sen_sentiments %>%
 
 * Let's take a look and try to interpret our preliminary results...
 
-![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here)  
+![Results of preliminary topic modeling for corpus of documents related to oysters in Maine (n.b. sample data used is just a ~20 document subset of our text data) ](Insert github link to png file here)!  
 
 * Now that we have a sense of what people are discussing, how are they feeling about these topics? Let's see if we can gain any insights by using sentiment analysis
 
